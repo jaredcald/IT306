@@ -1,21 +1,46 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GP1;
 
-/**
- *
- * @author cmdAdmin
- */
+import java.awt.CardLayout;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.LinkedList;
+import javax.swing.JOptionPane;
+
+//=======================================================================\\
+// Student Name: Benjamin Bristol (Lead)
+// Student Name: Jared Caldwell (Support)
+// Student Name: Anmol Dua (Support)
+// Date: 4.10.17
+// Course/Section: IT 306.001
+// Assignment: Group Project
+// This application will present the UI for the ISSTRaC application, 
+// and allow a user to enter all of the data requirements as specified in 
+// the earlier project documentation.
+//=======================================================================//	
 public class MainApplication extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainApplication
-     */
+    private static final String PNL_MAIN = "MainPanel";
+    private static final String PNL_NEWMISS = "NewMissionPanel";
+    private static final String PNL_EDTMISS = "EditMissionPanel";
+    private static final String PNL_RPTMISS = "MissionReportPanel";
+    
+    
+    private LinkedList missionStorage;
+    private Mission currentMission;
+    private Mission selectedMission;
+    
     public MainApplication() {
         initComponents();
+        
+        // TO DO: Check, Open and Load DB.
+        
+        missionStorage = new LinkedList();
+        
+        this.pnlMain.add(this.pnlMainMenu, PNL_MAIN);
+        this.pnlMain.add(this.pnlNewTab, PNL_NEWMISS);
+        this.pnlMain.add(this.pnlEditTab, PNL_EDTMISS);
+        this.pnlMain.add(this.pnlRptTab, PNL_RPTMISS);
     }
 
     /**
@@ -27,34 +52,56 @@ public class MainApplication extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlMainMenu = new javax.swing.JFrame();
-        jLabel5 = new javax.swing.JLabel();
-        btnNewMission1 = new javax.swing.JButton();
-        btnEditMission1 = new javax.swing.JButton();
-        btnMissionRpt1 = new javax.swing.JButton();
-        btnQuit1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        pnlMainMenu = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        btnNewMission = new javax.swing.JButton();
+        btnEditMission = new javax.swing.JButton();
+        btnMissionRpt = new javax.swing.JButton();
+        btnQuit = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
         pnlNewTab = new javax.swing.JTabbedPane();
         pnlMissionDetails = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        newMissDate = new javax.swing.JSpinner();
         jLabel11 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        pnlVehicleDetails = new javax.swing.JPanel();
+        newMissMissName = new javax.swing.JTextField();
+        btnNewMissEntry = new javax.swing.JButton();
+        btnNewMissCancel = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        newMissVehicleType = new javax.swing.JComboBox<>();
+        jLabel33 = new javax.swing.JLabel();
         pnlPayloadDetails = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        newMissPayloadType = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        newMissPayloadWeight = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        newMissPayloadComm = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnNewMissAddPayload = new javax.swing.JButton();
+        btnNewMissCancelPayload = new javax.swing.JButton();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        newMissPayloadCost = new javax.swing.JTextField();
         pnlCrewDetails = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        newMissCrewName = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        newMissCrewHeight = new javax.swing.JTextField();
+        newMissCrewWeight = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        newMissCrewType = new javax.swing.JComboBox<>();
+        newMissCrewExp = new javax.swing.JComboBox<>();
+        btnNewMissAddCrew = new javax.swing.JButton();
+        btnNewMissCancelCrew = new javax.swing.JButton();
+        jLabel28 = new javax.swing.JLabel();
+        pnlNewMissSubmit = new javax.swing.JPanel();
+        btnNewMissSubmit = new javax.swing.JButton();
+        btnNewMissDiscard = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
         pnlEditTab = new javax.swing.JTabbedPane();
         pnlEditSelect = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -62,74 +109,157 @@ public class MainApplication extends javax.swing.JFrame {
         btnUpdateMission = new javax.swing.JButton();
         btnDeleteMission = new javax.swing.JButton();
         btnCancelEdit = new javax.swing.JButton();
+        pnlEditPayload = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        editMissSelectPayload = new javax.swing.JComboBox<>();
+        jLabel19 = new javax.swing.JLabel();
+        editMissPayloadType = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        editMissPayloadWeight = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        editMissPayloadComm = new javax.swing.JTextArea();
+        btnEditMissAddPayload = new javax.swing.JButton();
+        btnEditMissCancelPayload = new javax.swing.JButton();
+        editMissAddPayload = new javax.swing.JCheckBox();
+        jLabel34 = new javax.swing.JLabel();
+        editMissPayloadCost = new javax.swing.JTextField();
+        pnlEditCrew = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        editMissSelectCrew = new javax.swing.JComboBox<>();
+        editMissAddCrew = new javax.swing.JCheckBox();
+        jLabel23 = new javax.swing.JLabel();
+        editMissCrewName = new javax.swing.JTextField();
+        editMissCrewHeight = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        editMissCrewWeight = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        editMissCrewType = new javax.swing.JComboBox<>();
+        editMissCrewExp = new javax.swing.JComboBox<>();
+        jLabel27 = new javax.swing.JLabel();
+        btnEditMissAddCrew = new javax.swing.JButton();
+        btnEditMissCancelCrew = new javax.swing.JButton();
+        jLabel29 = new javax.swing.JLabel();
+        pnlEditMissSubmit = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        btnEditMissSubmit = new javax.swing.JButton();
+        btnEditMissDiscard = new javax.swing.JButton();
         pnlRptTab = new javax.swing.JTabbedPane();
         pnlRptSelect = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         lstRptSelectedMission = new javax.swing.JComboBox<>();
         btnRptMission = new javax.swing.JButton();
         btnCancelRpt = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel35 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        rptMissOutput = new javax.swing.JTextArea();
+        btnRptMissConfirm = new javax.swing.JButton();
         pnlMain = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        btnNewMission = new javax.swing.JButton();
-        btnEditMission = new javax.swing.JButton();
-        btnMissionRpt = new javax.swing.JButton();
-        btnQuit = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
 
-        jLabel5.setText("ISSTRaC Main Menu");
+        pnlMainMenu.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        btnNewMission1.setText("New Mission");
+        jLabel1.setText("ISSTRaC Main Menu");
 
-        btnEditMission1.setText("Edit Mission");
+        btnNewMission.setText("New Mission");
+        btnNewMission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewMissionActionPerformed(evt);
+            }
+        });
 
-        btnMissionRpt1.setText("Mission Report");
+        btnEditMission.setText("Edit Mission");
+        btnEditMission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditMissionActionPerformed(evt);
+            }
+        });
 
-        btnQuit1.setText("Quit");
+        btnMissionRpt.setText("Mission Report");
+        btnMissionRpt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMissionRptActionPerformed(evt);
+            }
+        });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GP1/ISS Logo.png"))); // NOI18N
+        btnQuit.setText("Quit");
+        btnQuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout pnlMainMenuLayout = new javax.swing.GroupLayout(pnlMainMenu.getContentPane());
-        pnlMainMenu.getContentPane().setLayout(pnlMainMenuLayout);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GP1/ISS Logo Bckground.png"))); // NOI18N
+        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel30.setText("ver 0.1a");
+
+        javax.swing.GroupLayout pnlMainMenuLayout = new javax.swing.GroupLayout(pnlMainMenu);
+        pnlMainMenu.setLayout(pnlMainMenuLayout);
         pnlMainMenuLayout.setHorizontalGroup(
             pnlMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMainMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnMissionRpt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditMission1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5)
-                    .addComponent(btnNewMission1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQuit1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnMissionRpt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditMission, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnNewMission, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQuit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlMainMenuLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel30)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
+                .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlMainMenuLayout.setVerticalGroup(
             pnlMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMainMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
+                .addGroup(pnlMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2)
                     .addGroup(pnlMainMenuLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNewMission1)
+                        .addComponent(btnNewMission)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEditMission1)
+                        .addComponent(btnEditMission)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMissionRpt1)
+                        .addComponent(btnMissionRpt)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnQuit1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnQuit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel30)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jLabel10.setText("Mission Date:");
+        jLabel10.setText("Date:");
 
-        jLabel11.setText("Mission Name:");
+        newMissDate.setModel(new javax.swing.SpinnerDateModel());
 
-        jButton3.setText("Submit");
+        jLabel11.setText("Mission Information:");
 
-        jButton4.setText("Cancel");
+        btnNewMissEntry.setText("Submit");
+        btnNewMissEntry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewMissEntryActionPerformed(evt);
+            }
+        });
+
+        btnNewMissCancel.setText("Return to Main Menu");
+        btnNewMissCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewMissCancelActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Vehicle:");
+
+        newMissVehicleType.setModel(new VehicleModel());
+
+        jLabel33.setText("Name:");
 
         javax.swing.GroupLayout pnlMissionDetailsLayout = new javax.swing.GroupLayout(pnlMissionDetails);
         pnlMissionDetails.setLayout(pnlMissionDetailsLayout);
@@ -139,151 +269,330 @@ public class MainApplication extends javax.swing.JFrame {
                 .addGroup(pnlMissionDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlMissionDetailsLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(pnlMissionDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel10)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                            .addComponent(jLabel11)
-                            .addComponent(jTextField2)))
+                        .addComponent(jLabel11))
                     .addGroup(pnlMissionDetailsLayout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(jButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)))
-                .addContainerGap(137, Short.MAX_VALUE))
+                        .addGap(84, 84, 84)
+                        .addComponent(btnNewMissEntry)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnNewMissCancel))
+                    .addGroup(pnlMissionDetailsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlMissionDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlMissionDetailsLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(newMissVehicleType, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlMissionDetailsLayout.createSequentialGroup()
+                                .addGroup(pnlMissionDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel33)
+                                    .addComponent(jLabel10))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlMissionDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(newMissDate)
+                                    .addComponent(newMissMissName))))))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         pnlMissionDetailsLayout.setVerticalGroup(
             pnlMissionDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMissionDetailsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11)
-                .addGap(5, 5, 5)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlMissionDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(newMissMissName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel33))
+                .addGap(5, 5, 5)
+                .addGroup(pnlMissionDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(newMissDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlMissionDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(newMissVehicleType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(pnlMissionDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNewMissEntry)
+                    .addComponent(btnNewMissCancel))
+                .addGap(51, 51, 51))
         );
 
         pnlNewTab.addTab("Mission", pnlMissionDetails);
 
-        javax.swing.GroupLayout pnlVehicleDetailsLayout = new javax.swing.GroupLayout(pnlVehicleDetails);
-        pnlVehicleDetails.setLayout(pnlVehicleDetailsLayout);
-        pnlVehicleDetailsLayout.setHorizontalGroup(
-            pnlVehicleDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 406, Short.MAX_VALUE)
-        );
-        pnlVehicleDetailsLayout.setVerticalGroup(
-            pnlVehicleDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 179, Short.MAX_VALUE)
-        );
+        newMissPayloadType.setModel(new PayloadModel());
 
-        pnlNewTab.addTab("Vehicle", pnlVehicleDetails);
+        jLabel7.setText("Type:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel8.setText("Weight:");
 
-        jLabel7.setText("Payload Type:");
-
-        jLabel8.setText("Payload Weight:");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        newMissPayloadComm.setColumns(20);
+        newMissPayloadComm.setRows(5);
+        jScrollPane1.setViewportView(newMissPayloadComm);
 
         jLabel9.setText("Payload Comments:");
 
-        jButton1.setText("Submit");
+        btnNewMissAddPayload.setText("Add Payload");
+        btnNewMissAddPayload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewMissAddPayloadActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Cancel");
+        btnNewMissCancelPayload.setText("Cancel");
+        btnNewMissCancelPayload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewMissCancelPayloadActionPerformed(evt);
+            }
+        });
+
+        jLabel31.setText("Payload Information:");
+
+        jLabel32.setText("Cost:");
 
         javax.swing.GroupLayout pnlPayloadDetailsLayout = new javax.swing.GroupLayout(pnlPayloadDetails);
         pnlPayloadDetails.setLayout(pnlPayloadDetailsLayout);
         pnlPayloadDetailsLayout.setHorizontalGroup(
             pnlPayloadDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPayloadDetailsLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnlPayloadDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlPayloadDetailsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlPayloadDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7)
-                            .addComponent(jComboBox1, 0, 159, Short.MAX_VALUE)
-                            .addComponent(jLabel8)
-                            .addComponent(jTextField1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlPayloadDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)))
+                            .addComponent(jLabel31)
+                            .addGroup(pnlPayloadDetailsLayout.createSequentialGroup()
+                                .addGap(78, 78, 78)
+                                .addComponent(btnNewMissAddPayload)))
+                        .addGroup(pnlPayloadDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlPayloadDetailsLayout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel9))
+                            .addGroup(pnlPayloadDetailsLayout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(btnNewMissCancelPayload)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlPayloadDetailsLayout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jButton1)
-                        .addGap(84, 84, 84)
-                        .addComponent(jButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(pnlPayloadDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(pnlPayloadDetailsLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(newMissPayloadType, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlPayloadDetailsLayout.createSequentialGroup()
+                                .addGroup(pnlPayloadDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel32))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlPayloadDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(newMissPayloadCost)
+                                    .addComponent(newMissPayloadWeight))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
         );
         pnlPayloadDetailsLayout.setVerticalGroup(
             pnlPayloadDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPayloadDetailsLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(pnlPayloadDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(jLabel31)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlPayloadDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlPayloadDetailsLayout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8)
+                        .addGroup(pnlPayloadDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(newMissPayloadType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlPayloadDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(newMissPayloadWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlPayloadDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel32)
+                            .addComponent(newMissPayloadCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 15, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlPayloadDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addComponent(btnNewMissAddPayload)
+                    .addComponent(btnNewMissCancelPayload))
+                .addGap(39, 39, 39))
         );
 
         pnlNewTab.addTab("Payload", pnlPayloadDetails);
+
+        jLabel6.setText("Crewman Information:");
+
+        jLabel12.setText("Height:");
+
+        jLabel13.setText("Weight:");
+
+        jLabel14.setText("Mission Position:");
+
+        jLabel15.setText("Crewman Experience:");
+
+        newMissCrewType.setModel(new CrewModel());
+
+        newMissCrewExp.setModel(new ExperienceModel());
+
+        btnNewMissAddCrew.setText("Add Crewman");
+        btnNewMissAddCrew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewMissAddCrewActionPerformed(evt);
+            }
+        });
+
+        btnNewMissCancelCrew.setText("Cancel");
+        btnNewMissCancelCrew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewMissCancelCrewActionPerformed(evt);
+            }
+        });
+
+        jLabel28.setText("Name:");
 
         javax.swing.GroupLayout pnlCrewDetailsLayout = new javax.swing.GroupLayout(pnlCrewDetails);
         pnlCrewDetails.setLayout(pnlCrewDetailsLayout);
         pnlCrewDetailsLayout.setHorizontalGroup(
             pnlCrewDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 406, Short.MAX_VALUE)
+            .addGroup(pnlCrewDetailsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlCrewDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCrewDetailsLayout.createSequentialGroup()
+                        .addGroup(pnlCrewDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlCrewDetailsLayout.createSequentialGroup()
+                                .addGroup(pnlCrewDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel28)
+                                    .addComponent(jLabel13))
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlCrewDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(newMissCrewWeight)
+                                    .addComponent(newMissCrewName)
+                                    .addComponent(newMissCrewHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel6))
+                        .addGroup(pnlCrewDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlCrewDetailsLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jLabel14))
+                            .addGroup(pnlCrewDetailsLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlCrewDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15)
+                                    .addComponent(newMissCrewType, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(newMissCrewExp, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(pnlCrewDetailsLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(btnNewMissAddCrew)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnNewMissCancelCrew, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         pnlCrewDetailsLayout.setVerticalGroup(
             pnlCrewDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 179, Short.MAX_VALUE)
+            .addGroup(pnlCrewDetailsLayout.createSequentialGroup()
+                .addGroup(pnlCrewDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(pnlCrewDetailsLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(newMissCrewType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel15))
+                    .addGroup(pnlCrewDetailsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlCrewDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel28)
+                            .addComponent(newMissCrewName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlCrewDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(newMissCrewHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlCrewDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newMissCrewExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(newMissCrewWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlCrewDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNewMissAddCrew)
+                    .addComponent(btnNewMissCancelCrew))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         pnlNewTab.addTab("Crew", pnlCrewDetails);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 406, Short.MAX_VALUE)
+        btnNewMissSubmit.setText("Submit Mission");
+        btnNewMissSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewMissSubmitActionPerformed(evt);
+            }
+        });
+
+        btnNewMissDiscard.setText("Discard Mission");
+        btnNewMissDiscard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewMissDiscardActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setText("Please use the buttons below to add or discard this mission.");
+
+        javax.swing.GroupLayout pnlNewMissSubmitLayout = new javax.swing.GroupLayout(pnlNewMissSubmit);
+        pnlNewMissSubmit.setLayout(pnlNewMissSubmitLayout);
+        pnlNewMissSubmitLayout.setHorizontalGroup(
+            pnlNewMissSubmitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlNewMissSubmitLayout.createSequentialGroup()
+                .addGroup(pnlNewMissSubmitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlNewMissSubmitLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(btnNewMissSubmit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnNewMissDiscard))
+                    .addGroup(pnlNewMissSubmitLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel16)))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 179, Short.MAX_VALUE)
+        pnlNewMissSubmitLayout.setVerticalGroup(
+            pnlNewMissSubmitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNewMissSubmitLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel16)
+                .addGap(35, 35, 35)
+                .addGroup(pnlNewMissSubmitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNewMissSubmit)
+                    .addComponent(btnNewMissDiscard))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
-        pnlNewTab.addTab("Confirm & Submit", jPanel1);
+        pnlNewTab.addTab("Confirm & Submit", pnlNewMissSubmit);
 
         jLabel3.setText("Select a Mission:");
 
         lstSelectedMission.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Select from Mission List>" }));
 
         btnUpdateMission.setText("Update Mission");
+        btnUpdateMission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateMissionActionPerformed(evt);
+            }
+        });
 
         btnDeleteMission.setText("Delete Mission");
+        btnDeleteMission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteMissionActionPerformed(evt);
+            }
+        });
 
-        btnCancelEdit.setText("Cancel");
+        btnCancelEdit.setText("Return to Main Menu");
+        btnCancelEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelEditActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlEditSelectLayout = new javax.swing.GroupLayout(pnlEditSelect);
         pnlEditSelect.setLayout(pnlEditSelectLayout);
@@ -297,10 +606,10 @@ public class MainApplication extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDeleteMission)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCancelEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lstSelectedMission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         pnlEditSelectLayout.setVerticalGroup(
             pnlEditSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,18 +623,277 @@ public class MainApplication extends javax.swing.JFrame {
                     .addComponent(btnUpdateMission)
                     .addComponent(btnDeleteMission)
                     .addComponent(btnCancelEdit))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         pnlEditTab.addTab("Select Mission", pnlEditSelect);
+
+        jLabel18.setText("Select Payload to Edit or to Add:");
+
+        editMissSelectPayload.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel19.setText("Type:");
+
+        editMissPayloadType.setModel(new PayloadModel());
+
+        jLabel20.setText("Weight:");
+
+        jLabel21.setText("Payload Comments:");
+
+        editMissPayloadComm.setColumns(20);
+        editMissPayloadComm.setRows(5);
+        jScrollPane2.setViewportView(editMissPayloadComm);
+
+        btnEditMissAddPayload.setText("Add / Update Payload");
+
+        btnEditMissCancelPayload.setText("Cancel");
+        btnEditMissCancelPayload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditMissCancelPayloadActionPerformed(evt);
+            }
+        });
+
+        editMissAddPayload.setText("Add New Payload");
+
+        jLabel34.setText("Cost:");
+
+        javax.swing.GroupLayout pnlEditPayloadLayout = new javax.swing.GroupLayout(pnlEditPayload);
+        pnlEditPayload.setLayout(pnlEditPayloadLayout);
+        pnlEditPayloadLayout.setHorizontalGroup(
+            pnlEditPayloadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEditPayloadLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlEditPayloadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlEditPayloadLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(btnEditMissAddPayload)
+                        .addGap(82, 82, 82)
+                        .addComponent(btnEditMissCancelPayload))
+                    .addGroup(pnlEditPayloadLayout.createSequentialGroup()
+                        .addGroup(pnlEditPayloadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(editMissSelectPayload, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(pnlEditPayloadLayout.createSequentialGroup()
+                                .addGroup(pnlEditPayloadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jLabel34)
+                                    .addComponent(jLabel19))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlEditPayloadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(editMissPayloadType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(editMissPayloadCost)
+                                    .addComponent(editMissPayloadWeight))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pnlEditPayloadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editMissAddPayload)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21))))
+                .addContainerGap())
+        );
+        pnlEditPayloadLayout.setVerticalGroup(
+            pnlEditPayloadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEditPayloadLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlEditPayloadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editMissSelectPayload, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editMissAddPayload))
+                .addGap(11, 11, 11)
+                .addGroup(pnlEditPayloadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlEditPayloadLayout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlEditPayloadLayout.createSequentialGroup()
+                        .addGroup(pnlEditPayloadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editMissPayloadType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlEditPayloadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editMissPayloadWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlEditPayloadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editMissPayloadCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel34))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlEditPayloadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEditMissAddPayload)
+                    .addComponent(btnEditMissCancelPayload))
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+
+        pnlEditTab.addTab("Edit Payload", pnlEditPayload);
+
+        jLabel22.setText("Select Crewman to Edit or to Add:");
+
+        editMissSelectCrew.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        editMissAddCrew.setText("Add New Crewman");
+
+        jLabel23.setText("Name:");
+
+        jLabel24.setText("Height:");
+
+        jLabel25.setText("Weight:");
+
+        jLabel26.setText("Mission Position:");
+
+        editMissCrewType.setModel(new CrewModel());
+
+        editMissCrewExp.setModel(new ExperienceModel());
+
+        jLabel27.setText("Crewman Experience:");
+
+        btnEditMissAddCrew.setText("Add / Update Crewman");
+
+        btnEditMissCancelCrew.setText("Cancel");
+        btnEditMissCancelCrew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditMissCancelCrewActionPerformed(evt);
+            }
+        });
+
+        jLabel29.setText("Crewman Information:");
+
+        javax.swing.GroupLayout pnlEditCrewLayout = new javax.swing.GroupLayout(pnlEditCrew);
+        pnlEditCrew.setLayout(pnlEditCrewLayout);
+        pnlEditCrewLayout.setHorizontalGroup(
+            pnlEditCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEditCrewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlEditCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlEditCrewLayout.createSequentialGroup()
+                        .addComponent(btnEditMissAddCrew)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEditMissCancelCrew, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlEditCrewLayout.createSequentialGroup()
+                        .addGroup(pnlEditCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(editMissSelectCrew, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(editMissAddCrew))
+                    .addGroup(pnlEditCrewLayout.createSequentialGroup()
+                        .addGroup(pnlEditCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlEditCrewLayout.createSequentialGroup()
+                                .addGroup(pnlEditCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel23)
+                                    .addComponent(jLabel24)
+                                    .addComponent(jLabel25))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlEditCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(editMissCrewName)
+                                    .addComponent(editMissCrewHeight)
+                                    .addComponent(editMissCrewWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel29))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pnlEditCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel26)
+                            .addComponent(editMissCrewType, 0, 155, Short.MAX_VALUE)
+                            .addComponent(jLabel27)
+                            .addComponent(editMissCrewExp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+        pnlEditCrewLayout.setVerticalGroup(
+            pnlEditCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEditCrewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlEditCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editMissSelectCrew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editMissAddCrew))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlEditCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel29))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlEditCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlEditCrewLayout.createSequentialGroup()
+                        .addComponent(editMissCrewType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editMissCrewExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlEditCrewLayout.createSequentialGroup()
+                        .addGroup(pnlEditCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel23)
+                            .addComponent(editMissCrewName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlEditCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel24)
+                            .addComponent(editMissCrewHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlEditCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel25)
+                            .addComponent(editMissCrewWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlEditCrewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEditMissAddCrew)
+                    .addComponent(btnEditMissCancelCrew))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        pnlEditTab.addTab("Edit Crew", pnlEditCrew);
+
+        jLabel17.setText("Please use the buttons below to update or discard changes.");
+
+        btnEditMissSubmit.setText("Update Mission");
+
+        btnEditMissDiscard.setText("Discard Updates");
+        btnEditMissDiscard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditMissDiscardActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlEditMissSubmitLayout = new javax.swing.GroupLayout(pnlEditMissSubmit);
+        pnlEditMissSubmit.setLayout(pnlEditMissSubmitLayout);
+        pnlEditMissSubmitLayout.setHorizontalGroup(
+            pnlEditMissSubmitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEditMissSubmitLayout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addComponent(btnEditMissSubmit)
+                .addGap(18, 18, 18)
+                .addComponent(btnEditMissDiscard)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEditMissSubmitLayout.createSequentialGroup()
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+        );
+        pnlEditMissSubmitLayout.setVerticalGroup(
+            pnlEditMissSubmitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEditMissSubmitLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(pnlEditMissSubmitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEditMissSubmit)
+                    .addComponent(btnEditMissDiscard))
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+
+        pnlEditTab.addTab("Confirm & Submit", pnlEditMissSubmit);
 
         jLabel4.setText("Select a Mission:");
 
         lstRptSelectedMission.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Select from Mission List>" }));
 
         btnRptMission.setText("Generate Report");
+        btnRptMission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRptMissionActionPerformed(evt);
+            }
+        });
 
-        btnCancelRpt.setText("Cancel");
+        btnCancelRpt.setText("Return to Main Menu");
+        btnCancelRpt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelRptActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlRptSelectLayout = new javax.swing.GroupLayout(pnlRptSelect);
         pnlRptSelect.setLayout(pnlRptSelectLayout);
@@ -337,10 +905,10 @@ public class MainApplication extends javax.swing.JFrame {
                     .addGroup(pnlRptSelectLayout.createSequentialGroup()
                         .addComponent(btnRptMission)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelRpt, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCancelRpt, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lstRptSelectedMission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         pnlRptSelectLayout.setVerticalGroup(
             pnlRptSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,82 +921,438 @@ public class MainApplication extends javax.swing.JFrame {
                 .addGroup(pnlRptSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRptMission)
                     .addComponent(btnCancelRpt))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         pnlRptTab.addTab("Select Mission", pnlRptSelect);
 
+        jLabel35.setText("Mission Report:");
+
+        rptMissOutput.setColumns(20);
+        rptMissOutput.setRows(5);
+        jScrollPane3.setViewportView(rptMissOutput);
+
+        btnRptMissConfirm.setText("Confirm");
+        btnRptMissConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRptMissConfirmActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel35)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(btnRptMissConfirm)))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRptMissConfirm)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        pnlRptTab.addTab("Report Output", jPanel1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnlMain.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel1.setText("ISSTRaC Main Menu");
-
-        btnNewMission.setText("New Mission");
-
-        btnEditMission.setText("Edit Mission");
-
-        btnMissionRpt.setText("Mission Report");
-
-        btnQuit.setText("Quit");
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GP1/ISS Logo.png"))); // NOI18N
-
-        javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
-        pnlMain.setLayout(pnlMainLayout);
-        pnlMainLayout.setHorizontalGroup(
-            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMainLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnMissionRpt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditMission, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addComponent(btnNewMission, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQuit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlMainLayout.setVerticalGroup(
-            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMainLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(pnlMainLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNewMission)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEditMission)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMissionRpt)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnQuit)))
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
+        pnlMain.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 460, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 247, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnNewMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMissionActionPerformed
+        CardLayout c1 = (CardLayout) this.pnlMain.getLayout();
+        c1.show(this.pnlMain, PNL_NEWMISS);
+    }//GEN-LAST:event_btnNewMissionActionPerformed
+
+    private void btnEditMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditMissionActionPerformed
+        
+        for(int counter = 0; counter < missionStorage.size(); counter++)
+        {
+            this.lstSelectedMission.addItem(missionStorage.get(counter).toString());
+        }
+        
+        CardLayout c1 = (CardLayout) this.pnlMain.getLayout();
+        c1.show(this.pnlMain, PNL_EDTMISS);
+    }//GEN-LAST:event_btnEditMissionActionPerformed
+
+    private void btnMissionRptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMissionRptActionPerformed
+        
+        for(int counter = 0; counter < missionStorage.size(); counter++)
+        {
+            this.lstRptSelectedMission.addItem(missionStorage.get(counter).toString());
+        }
+        
+        CardLayout c1 = (CardLayout) this.pnlMain.getLayout();
+        c1.show(this.pnlMain, PNL_RPTMISS);
+    }//GEN-LAST:event_btnMissionRptActionPerformed
+
+    private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
+        if(JOptionPane.showConfirmDialog(null, "Are you sure you would like to quit?", "Confirm Exit", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+        { 
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnQuitActionPerformed
+
+    private void btnNewMissCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMissCancelActionPerformed
+        resetNewMission();
+        CardLayout c1 = (CardLayout) this.pnlMain.getLayout();
+        c1.show(this.pnlMain, PNL_MAIN);
+    }//GEN-LAST:event_btnNewMissCancelActionPerformed
+
+    private void btnCancelEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelEditActionPerformed
+        resetEditMission();
+        CardLayout c1 = (CardLayout) this.pnlMain.getLayout();
+        c1.show(this.pnlMain, PNL_MAIN);
+    }//GEN-LAST:event_btnCancelEditActionPerformed
+
+    private void btnCancelRptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelRptActionPerformed
+        this.lstRptSelectedMission.setSelectedIndex(0);
+        CardLayout c1 = (CardLayout) this.pnlMain.getLayout();
+        c1.show(this.pnlMain, PNL_MAIN);
+    }//GEN-LAST:event_btnCancelRptActionPerformed
+
+    private void btnNewMissCancelPayloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMissCancelPayloadActionPerformed
+        if(JOptionPane.showConfirmDialog(null, "Are you sure you would like to reset this payload?", "Confirm Payload Reset", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+        { 
+            this.newMissPayloadType.setSelectedIndex(0);
+            this.newMissPayloadWeight.setText("");
+            this.newMissPayloadComm.setText("");
+            this.newMissPayloadCost.setText("");
+        }
+    }//GEN-LAST:event_btnNewMissCancelPayloadActionPerformed
+
+    private void btnNewMissCancelCrewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMissCancelCrewActionPerformed
+        if(JOptionPane.showConfirmDialog(null, "Are you sure you would like to reset this crewmember?", "Confirm Crewman Reset", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+        { 
+            this.newMissCrewName.setText("");
+            this.newMissCrewHeight.setText("");
+            this.newMissCrewWeight.setText("");
+            this.newMissCrewType.setSelectedIndex(0);
+            this.newMissCrewExp.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_btnNewMissCancelCrewActionPerformed
+
+    private void btnNewMissDiscardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMissDiscardActionPerformed
+       
+        if(JOptionPane.showConfirmDialog(null, "Are you sure you would like to cancel this mission?", "Confirm Mission Cancel", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+        { 
+            currentMission = null;
+            resetNewMission();
+
+            CardLayout c1 = (CardLayout) this.pnlMain.getLayout();
+            c1.show(this.pnlMain, PNL_MAIN);
+        }
+    }//GEN-LAST:event_btnNewMissDiscardActionPerformed
+
+    private void btnEditMissCancelPayloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditMissCancelPayloadActionPerformed
+        
+        if(JOptionPane.showConfirmDialog(null, "Are you sure you would like to reset this payload?", "Confirm Payload Reset", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+        { 
+            this.editMissAddPayload.setSelected(false);
+            this.editMissSelectPayload.setSelectedIndex(0);
+            this.editMissPayloadType.setSelectedIndex(0);
+            this.editMissPayloadWeight.setText("");
+            this.editMissPayloadComm.setText("");
+            this.editMissPayloadCost.setText("");
+        }
+    }//GEN-LAST:event_btnEditMissCancelPayloadActionPerformed
+
+    private void btnEditMissCancelCrewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditMissCancelCrewActionPerformed
+
+        if(JOptionPane.showConfirmDialog(null, "Are you sure you would like to reset this crewmember?", "Confirm Crewman Reset", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+        { 
+            this.editMissAddCrew.setSelected(false);
+            this.editMissSelectCrew.setSelectedIndex(0);
+            this.editMissCrewName.setText("");
+            this.editMissCrewHeight.setText("");
+            this.editMissCrewWeight.setText("");
+            this.editMissCrewType.setSelectedIndex(0);
+            this.editMissCrewExp.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_btnEditMissCancelCrewActionPerformed
+
+    private void btnEditMissDiscardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditMissDiscardActionPerformed
+        
+        if(JOptionPane.showConfirmDialog(null, "Are you sure you would like to cancel updates to this mission?", "Confirm Mission Update Cancel", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+        { 
+            resetEditMission();
+
+            CardLayout c1 = (CardLayout) this.pnlMain.getLayout();
+            c1.show(this.pnlMain, PNL_MAIN);
+        }
+    }//GEN-LAST:event_btnEditMissDiscardActionPerformed
+
+    private void btnDeleteMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteMissionActionPerformed
+        if(this.lstRptSelectedMission.getSelectedIndex() == 0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a mission.");
+        }
+        else
+        {  
+            if(JOptionPane.showConfirmDialog(null, "Are you sure you would like to delete this mission?", "Confirm Mission Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            { 
+                // DELETE SELECTED MISSION
+
+                CardLayout c1 = (CardLayout) this.pnlMain.getLayout();
+                c1.show(this.pnlMain, PNL_MAIN);
+            }
+        }
+    }//GEN-LAST:event_btnDeleteMissionActionPerformed
+
+    private void btnNewMissEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMissEntryActionPerformed
+        Mission newMission = new Mission();
+        
+        newMission.setMissionName(this.newMissMissName.getText());
+        
+        DateFormat missDateFormatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        Date missDate = (Date)this.newMissDate.getValue();        
+        newMission.setMissionDate(missDateFormatter.format(missDate));
+        
+        Vehicle selectedVehicle = null;
+        
+        switch(this.newMissVehicleType.getSelectedIndex())
+        {
+            case 0:
+            {
+                selectedVehicle = new ColdGas();
+                break;
+            }
+            case 1:
+            {
+                selectedVehicle = new SolidFuel();
+                break;
+            }
+            case 2:
+            {
+                selectedVehicle = new LiquidFuel();
+                break;
+            }
+            default:
+            {
+                JOptionPane.showMessageDialog(null, "ERROR. Contact support.");
+            }
+        }
+        newMission.setMissionVehicle(selectedVehicle);
+        
+        currentMission = newMission;
+        
+        this.pnlNewTab.setEnabledAt(this.pnlNewTab.getSelectedIndex(), false);
+        this.pnlNewTab.setSelectedIndex(this.pnlNewTab.getSelectedIndex() + 1);
+    }//GEN-LAST:event_btnNewMissEntryActionPerformed
+
+    private void btnUpdateMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateMissionActionPerformed
+
+        if(this.lstRptSelectedMission.getSelectedIndex() == 0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a mission.");
+        }
+        else
+        {        
+            selectedMission = (Mission) missionStorage.remove(this.lstSelectedMission.getSelectedIndex() - 1);
+
+            for(int counter = 0; counter < selectedMission.getMissionVehicle().getCurrNumPayloads(); counter++)
+            {
+                //this.editMissSelectPayload.addItem(selectedMission.getMissionVehicle().payloadArray[counter].toString());
+            }
+
+            this.pnlEditTab.setSelectedIndex(this.pnlEditTab.getSelectedIndex() + 1);
+        }
+    }//GEN-LAST:event_btnUpdateMissionActionPerformed
+
+    private void btnNewMissAddPayloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMissAddPayloadActionPerformed
+        
+        Payload currentPayload = null;
+        
+        switch(this.newMissPayloadType.getSelectedIndex())
+        {
+            case 0:
+            {
+                currentPayload = new Equipment();
+                break;
+            }
+            case 1:
+            {
+                currentPayload = new Structure();
+                break;
+            }
+            case 2:
+            {
+                currentPayload = new Supplies();
+                break;
+            }
+            default:
+            {
+                JOptionPane.showMessageDialog(null, "ERROR.  Contact Support.");
+                break;
+            }
+        }
+        
+        currentPayload.setWeight(Integer.parseInt(this.newMissPayloadWeight.getText()));
+        currentPayload.setCost(Double.parseDouble(this.newMissPayloadCost.getText()));
+        currentPayload.setPayloadComments(this.newMissPayloadComm.getText());
+        
+        currentMission.getMissionVehicle().addPayload(currentPayload);
+        resetNewMissPayload(); 
+    }//GEN-LAST:event_btnNewMissAddPayloadActionPerformed
+
+    private void btnNewMissAddCrewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMissAddCrewActionPerformed
+        
+        Astronaut currentCrew = null;
+        
+        switch(this.newMissCrewType.getSelectedIndex())
+        {
+            case 0:
+            {
+                currentCrew = new MissionCaptain();
+                break;
+            }
+            case 1:
+            {
+                currentCrew = new Pilot();
+                break;
+            }
+            case 2:
+            {
+                currentCrew = new Engineer();
+                break;
+            }
+            case 3:
+            {
+                currentCrew = new Copilot();
+                break;
+            }
+            default:
+            {
+                JOptionPane.showMessageDialog(null, "ERROR.  Contact Support.");
+                break;
+            }
+        }
+        
+        currentCrew.setName(this.newMissCrewName.getText());
+        currentCrew.setHeight(Double.parseDouble(this.newMissCrewHeight.getText()));
+        currentCrew.setWeight(Double.parseDouble(this.newMissCrewWeight.getText()));
+        currentCrew.setYearsExp(this.newMissCrewExp.getSelectedIndex());
+        
+        currentMission.getMissionVehicle().setCrew(currentCrew);
+        resetNewMissCrew();        
+    }//GEN-LAST:event_btnNewMissAddCrewActionPerformed
+
+    private void btnNewMissSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMissSubmitActionPerformed
+        
+        if(JOptionPane.showConfirmDialog(null, "Are you sure you would like to submit this mission?", "Confirm Mission Submit", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+        {
+            missionStorage.add(currentMission);
+
+            CardLayout c1 = (CardLayout) this.pnlMain.getLayout();
+            c1.show(this.pnlMain, PNL_MAIN);
+        }
+    }//GEN-LAST:event_btnNewMissSubmitActionPerformed
+
+    private void btnRptMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRptMissionActionPerformed
+
+        if(this.lstRptSelectedMission.getSelectedIndex() == 0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a mission.");
+        }
+        else
+        {
+            this.rptMissOutput.setText(missionStorage.get(this.lstRptSelectedMission.getSelectedIndex()-1).toString());
+            this.pnlRptTab.setSelectedIndex(this.pnlRptTab.getSelectedIndex() + 1);
+            
+            // TO DO: A more robust report method with filled fields will be implemented in the final version.
+            //generateReport((Mission)missionStorage.get(this.lstRptSelectedMission.getSelectedIndex()));
+        }
+    }//GEN-LAST:event_btnRptMissionActionPerformed
+
+    private void btnRptMissConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRptMissConfirmActionPerformed
+        this.rptMissOutput.setText("");
+        this.pnlRptTab.setSelectedIndex(0);
+    }//GEN-LAST:event_btnRptMissConfirmActionPerformed
+
+    private void resetNewMission()
+    {
+        this.newMissMissName.setText("");
+        //this.newMissDate.
+        this.newMissVehicleType.setSelectedIndex(0);
+        
+        resetNewMissPayload();
+        resetNewMissCrew();
+    }
+    
+    private void resetNewMissPayload()
+    {
+        this.newMissPayloadType.setSelectedIndex(0);
+        this.newMissPayloadWeight.setText("");
+        this.newMissPayloadComm.setText("");
+        this.newMissPayloadCost.setText("");
+    }
+    
+    private void resetNewMissCrew()
+    {
+        this.newMissCrewName.setText("");
+        this.newMissCrewHeight.setText("");
+        this.newMissCrewWeight.setText("");
+        this.newMissCrewType.setSelectedIndex(0);
+        this.newMissCrewExp.setSelectedIndex(0);
+    }
+    
+    private void resetEditMission()
+    {
+        this.lstSelectedMission.setSelectedIndex(0);
+        
+        this.editMissAddPayload.setSelected(false);
+        this.editMissSelectPayload.setSelectedIndex(0);
+        this.editMissPayloadType.setSelectedIndex(0);
+        this.editMissPayloadWeight.setText("");
+        this.editMissPayloadComm.setText("");
+        this.editMissPayloadCost.setText("");
+
+        this.editMissAddCrew.setSelected(false);
+        this.editMissSelectCrew.setSelectedIndex(0);
+        this.editMissCrewName.setText("");
+        this.editMissCrewHeight.setText("");
+        this.editMissCrewWeight.setText("");
+        this.editMissCrewType.setSelectedIndex(0);
+        this.editMissCrewExp.setSelectedIndex(0);        
+    }
+    
+    private void generateReport(Mission selectedMission)
+    {
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -468,26 +1392,69 @@ public class MainApplication extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelEdit;
     private javax.swing.JButton btnCancelRpt;
     private javax.swing.JButton btnDeleteMission;
+    private javax.swing.JButton btnEditMissAddCrew;
+    private javax.swing.JButton btnEditMissAddPayload;
+    private javax.swing.JButton btnEditMissCancelCrew;
+    private javax.swing.JButton btnEditMissCancelPayload;
+    private javax.swing.JButton btnEditMissDiscard;
+    private javax.swing.JButton btnEditMissSubmit;
     private javax.swing.JButton btnEditMission;
-    private javax.swing.JButton btnEditMission1;
     private javax.swing.JButton btnMissionRpt;
-    private javax.swing.JButton btnMissionRpt1;
+    private javax.swing.JButton btnNewMissAddCrew;
+    private javax.swing.JButton btnNewMissAddPayload;
+    private javax.swing.JButton btnNewMissCancel;
+    private javax.swing.JButton btnNewMissCancelCrew;
+    private javax.swing.JButton btnNewMissCancelPayload;
+    private javax.swing.JButton btnNewMissDiscard;
+    private javax.swing.JButton btnNewMissEntry;
+    private javax.swing.JButton btnNewMissSubmit;
     private javax.swing.JButton btnNewMission;
-    private javax.swing.JButton btnNewMission1;
     private javax.swing.JButton btnQuit;
-    private javax.swing.JButton btnQuit1;
+    private javax.swing.JButton btnRptMissConfirm;
     private javax.swing.JButton btnRptMission;
     private javax.swing.JButton btnUpdateMission;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JCheckBox editMissAddCrew;
+    private javax.swing.JCheckBox editMissAddPayload;
+    private javax.swing.JComboBox<String> editMissCrewExp;
+    private javax.swing.JTextField editMissCrewHeight;
+    private javax.swing.JTextField editMissCrewName;
+    private javax.swing.JComboBox<String> editMissCrewType;
+    private javax.swing.JTextField editMissCrewWeight;
+    private javax.swing.JTextArea editMissPayloadComm;
+    private javax.swing.JTextField editMissPayloadCost;
+    private javax.swing.JComboBox<String> editMissPayloadType;
+    private javax.swing.JTextField editMissPayloadWeight;
+    private javax.swing.JComboBox<String> editMissSelectCrew;
+    private javax.swing.JComboBox<String> editMissSelectPayload;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -496,22 +1463,36 @@ public class MainApplication extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JComboBox<String> lstRptSelectedMission;
     private javax.swing.JComboBox<String> lstSelectedMission;
+    private javax.swing.JComboBox<String> newMissCrewExp;
+    private javax.swing.JTextField newMissCrewHeight;
+    private javax.swing.JTextField newMissCrewName;
+    private javax.swing.JComboBox<String> newMissCrewType;
+    private javax.swing.JTextField newMissCrewWeight;
+    private javax.swing.JSpinner newMissDate;
+    private javax.swing.JTextField newMissMissName;
+    private javax.swing.JTextArea newMissPayloadComm;
+    private javax.swing.JTextField newMissPayloadCost;
+    private javax.swing.JComboBox<String> newMissPayloadType;
+    private javax.swing.JTextField newMissPayloadWeight;
+    private javax.swing.JComboBox<String> newMissVehicleType;
     private javax.swing.JPanel pnlCrewDetails;
+    private javax.swing.JPanel pnlEditCrew;
+    private javax.swing.JPanel pnlEditMissSubmit;
+    private javax.swing.JPanel pnlEditPayload;
     private javax.swing.JPanel pnlEditSelect;
     private javax.swing.JTabbedPane pnlEditTab;
     private javax.swing.JPanel pnlMain;
-    private javax.swing.JFrame pnlMainMenu;
+    private javax.swing.JPanel pnlMainMenu;
     private javax.swing.JPanel pnlMissionDetails;
+    private javax.swing.JPanel pnlNewMissSubmit;
     private javax.swing.JTabbedPane pnlNewTab;
     private javax.swing.JPanel pnlPayloadDetails;
     private javax.swing.JPanel pnlRptSelect;
     private javax.swing.JTabbedPane pnlRptTab;
-    private javax.swing.JPanel pnlVehicleDetails;
+    private javax.swing.JTextArea rptMissOutput;
     // End of variables declaration//GEN-END:variables
 }
