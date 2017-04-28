@@ -3,6 +3,7 @@ package GP1;
 public class ColdGas extends Vehicle
 {
     public static final double CG_BASE_COST = 70000;
+    public static final double CG_BASE_WEIGHT = 2000;
     public static final double CG_SUCC_RATE = 0.50;
     public static final double CG_MAX_WEIGHT = 10000;
     public static final int CG_MAX_CREW = 4;
@@ -41,14 +42,16 @@ public class ColdGas extends Vehicle
         }
     }
     
-    public double calcThrust()
+    public double calcFuelCost()
     {
         return 0.0;
     }
     
     public double calcWeight()
     {
-        return 0.0;
+        double totWeight = super.calcWeight();
+        totWeight += CG_BASE_WEIGHT;
+        return totWeight;
     }
     
     public String toString()

@@ -3,6 +3,7 @@ package GP1;
 public class LiquidFuel extends Vehicle
 {
     public static final double LF_BASE_COST = 50000;
+    public static final double LF_BASE_WEIGHT = 3500;
     public static final double LF_SUCC_RATE = 0.75;
     public static final double LF_MAX_WEIGHT = 30000;
     public static final int LF_MAX_CREW = 5;
@@ -41,14 +42,16 @@ public class LiquidFuel extends Vehicle
         }
     }
     
-    public double calcThrust()
+    public double calcFuelCost()
     {
         return 0.0;
     }
     
     public double calcWeight()
     {
-        return 0.0;
+        double totWeight = super.calcWeight();
+        totWeight += LF_BASE_WEIGHT;
+        return totWeight;
     }
     
     public String toString()

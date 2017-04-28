@@ -3,6 +3,7 @@ package GP1;
 public class SolidFuel extends Vehicle
 {
     public static final double SF_BASE_COST = 90000;
+    public static final double SF_BASE_WEIGHT = 5000;
     public static final double SF_SUCC_RATE = 0.65;
     public static final double SF_MAX_WEIGHT = 50000;
     public static final int SF_MAX_CREW = 6;
@@ -41,14 +42,16 @@ public class SolidFuel extends Vehicle
         }
     }
     
-    public double calcThrust()
+    public double calcFuelCost()
     {
         return 0.0;
     }
     
     public double calcWeight()
     {
-        return 0.0;
+        double totWeight = super.calcWeight();
+        totWeight += SF_BASE_WEIGHT;
+        return totWeight;
     }
     
     public String toString()

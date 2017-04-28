@@ -53,25 +53,25 @@ abstract public class Payload
     }
 
     //special instance methods
-    public int calcPayloadWeight(){
-            int payloadWeight = (baseWeight + weight);
-            return payloadWeight;
+    public int calcWeight(){
+        int payloadWeight = (baseWeight + weight);
+        return payloadWeight;
     }
 
-    public double calcPayloadCost(){
-            double payloadCost = ((cost*weight) + baseCost);
-            return payloadCost;
+    public double calcCost(){
+        double payloadCost = ((cost*weight) + baseCost);
+        return payloadCost;
     }
 
     public String toString(){
-            String line = 
-                            "  Base Weight : " + baseWeight + 
-                            "  Base Cost : " + String.format("%10.2f", baseCost) +
-                            "  Weight : " + weight + "lbs." +
-                            "  Cost : " + String.format("%10.2f", cost) + "per/lb" +
-                            "  Payload Weight : " + calcPayloadWeight() + 
-                            "  Payload Cost : " + calcPayloadCost();		
-            return line; 
+        String line = 
+                        "  Base Weight : " + baseWeight + 
+                        "  Base Cost : " + String.format("%10.2f", baseCost) +
+                        "  Weight : " + weight + "lbs." +
+                        "  Cost : " + String.format("%10.2f", cost) + "per/lb" +
+                        "  Payload Weight : " + calcWeight() + 
+                        "  Payload Cost : " + calcCost();		
+        return line; 
     }
 
     public void toCSV(){

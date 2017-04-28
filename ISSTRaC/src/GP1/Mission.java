@@ -1,15 +1,46 @@
 package GP1;
 
+import java.util.Random;
+
 public class Mission
 {
     private int missionID;
     private String missionName;
     private String missionDate;
     private Vehicle missionVehicle;
+    // This represents the amount of wind resistance encountered
+    // during the mission.  It is a random value generated at
+    // object creation time.
+    private int missionWindValue;
+    
+    private static int numMissions;
+    public static final int MISS_ID_RATE = 10;
+    public static final int MISS_ID_INITIAL = 1000;
+    
+    public Mission()
+    {
+        Random windVal = new Random();
+        
+        this.missionName = "";
+        this.missionDate = "";
+        this.missionVehicle = null;
+        this.missionWindValue = windVal.nextInt(25) + 1;
+        
+        this.missionID = MISS_ID_INITIAL + (MISS_ID_RATE * Mission.getNumMiss());
+        Mission.setNumMiss(1);
+    }
     
     public int getMissionID() { return this.missionID; }
     public String getMissionName() { return this.missionName; }
     public String getMissionDate() { return this.missionDate; }
+    
+    public Vehicle getMissionVehicle()
+    {
+        // Clone function.
+        return this.missionVehicle;
+    }
+    
+    public static int getNumMiss() { return Mission.numMissions; }
     
     public boolean setMissionName(String aName)
     {
@@ -37,17 +68,24 @@ public class Mission
         } 
     }
     
-    public Vehicle getMissionVehicle()
-    {
-        // Clone function.
-        return this.missionVehicle;
-    }
-    
     public boolean setMissionVehicle(Vehicle aVehicle)
     {
         // Clone function.
         this.missionVehicle = aVehicle;
         return true;        
+    }
+    
+    public static boolean setNumMiss(int amount)
+    {
+        if(Mission.getNumMiss() + amount < 0)
+        {
+            return false;
+        }
+        else
+        {
+            Mission.numMissions = Mission.getNumMiss() + amount;
+            return true;
+        }
     }
     
     public String toString()

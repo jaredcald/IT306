@@ -5,6 +5,7 @@ public abstract class Vehicle
     public static final String[] VEHICLETYPES = {"Cold Gas", "Solid Fuel", "Liquid Fuel"};
     public static final double VEH_BASE_COST = 10000;
     public static final double VEH_MAX_COST = 100000;
+    public static final double EV_THRES = 25000; // Miles per Hour
     
     private Payload[] payloadArray;
     private Astronaut[] crewArray; 
@@ -24,6 +25,19 @@ public abstract class Vehicle
     public double getVehicleWeight() { return this.vehicleWeight; }
     public int getCurrNumPayloads() { return this.currNumPayloads; }
     public int getCurrNumCrew() { return this.currNumCrew; }
+    
+    
+    public Payload getPayload(int target)
+    {
+        // Should clone.
+        return this.payloadArray[target];
+    }
+    
+    public Astronaut getCrew(int target)
+    {
+        // Should clone.
+        return this.crewArray[target];
+    }
     
     public boolean setVehicleCost(double typeCost)
     {
@@ -51,8 +65,41 @@ public abstract class Vehicle
     public abstract boolean addPayload(Payload aPayload);
     public abstract boolean addCrew(Astronaut anAstronaut);
     
-    public abstract double calcThrust();
-    public abstract double calcWeight();
+    public abstract double calcFuelCost();
+    
+    public double calcCost()
+    {
+        double totCost = this.getVehicleCost();
+        
+        for(int counter = 0; counter < this.getCurrNumPayloads(); counter++)
+        {
+            totCost += this.getPayload(counter).calcCost();
+        }
+        
+        for(int counter = 0; counter < this.getCurrNumCrew(); counter++)
+        {
+            totCost += this.getCrew(counter).getSalary();
+        }
+        
+        return totCost;
+    }
+    
+    public double calcWeight()
+    {
+        double totWeight = 0.0;
+        
+        for(int counter = 0; counter < this.getCurrNumPayloads(); counter++)
+        {
+            totWeight += this.getPayload(counter).calcWeight();
+        }
+        
+        for(int counter = 0; counter < this.getCurrNumCrew(); counter++)
+        {
+            totWeight += this.getCrew(counter).getWeight();
+        }
+        
+        return totWeight;
+    }
     
     public String toString()
     {
