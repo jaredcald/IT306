@@ -50,4 +50,12 @@ public class ColdGas extends Vehicle
     {
         return 0.0;
     }
+    
+    public String toString()
+    {
+        String message = "";
+        message += "Type: Cold Gas";
+        message += super.toString();
+        return message;
+    }
 }

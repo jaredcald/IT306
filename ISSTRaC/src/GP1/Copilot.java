@@ -13,17 +13,18 @@ package GP1;
 public class Copilot extends Astronaut
 {	
     final int COPILOT_RATE = 2;
+    private final double[] CP_SALARY = {1000,2000,3000,4000};
+    private final double[] CP_RATE = {-0.15, -0.05, 0.05, 0.15};
     int experienceType;
     double experienceAmount;
-
-    public double calcExpMod(int yearsExperience, int age, double weight, double pay, int payRate) {
-            //this.setSalary(yearsExperience * age * weight);
-            return pay;
+    
+    public double calcExpMod()
+    {
+        return CP_RATE[this.getYearsExp()];
     }
     
     public double calcSalary()
     {
-        
-        return 0.0;
+        return CP_SALARY[this.getYearsExp()];
     }
 }

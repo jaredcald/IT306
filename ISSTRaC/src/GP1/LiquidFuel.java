@@ -50,4 +50,12 @@ public class LiquidFuel extends Vehicle
     {
         return 0.0;
     }
+    
+    public String toString()
+    {
+        String message = "";
+        message += "Type: Liquid Fuel";
+        message += super.toString();
+        return message;
+    }
 }

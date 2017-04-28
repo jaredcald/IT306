@@ -13,18 +13,15 @@ package GP1;
 //=======================================================================//	
 public abstract class Astronaut
 {
-    private final String experienceType[] = {"Trainee", "Novice", "Experienced", "Veteran"};
-    private final int experienceAmount[] = {3,6,9,16};
-    private String name;
+    private final String EXP_TYPE[] = {"Trainee", "Novice", "Experienced", "Veteran"};
     private int yearsExp;
-    private int age;
+    private String name;
     private double weight;
     private double height;
     private double salary;
     
     public String getName() { return this.name; }
     public int getYearsExp() { return this.yearsExp; }
-    public int getAge() { return this.age; }
     public double getWeight() { return this.weight; }
     public double getHeight() { return this.height; }
     public double getSalary() { return this.salary; }
@@ -38,27 +35,6 @@ public abstract class Astronaut
         else
         {
             this.name = aName;
-            return true;
-        }
-    }
-    
-    public boolean setYearsExp(int index)
-    {
-        // Need to validate this mutator.
-        this.yearsExp = experienceAmount[index];
-        return true;        
-    }
-    
-    public boolean setAge(int aAge)
-    {
-        // We may implement a condition preventing astronauts of a certain age.
-        if(aAge < 0 || aAge > 100)
-        {
-            return false;
-        }
-        else
-        {
-            this.age = aAge;
             return true;
         }
     }
@@ -91,7 +67,20 @@ public abstract class Astronaut
         }
     }
     
-    public abstract double calcExpMod(int yearsExperience, int age, double weight, double pay, int payRate);
+    public boolean setYearsExp(int anExp)
+    {
+        if(anExp < 0 || anExp > EXP_TYPE.length)
+        {
+            return false;
+        }
+        else
+        {
+            this.yearsExp = anExp;
+            return true;
+        }
+    }
+    
+    public abstract double calcExpMod();
     
     public abstract double calcSalary();            
 }

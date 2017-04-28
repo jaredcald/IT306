@@ -54,9 +54,8 @@ public class Mission
     {
         String message = "";
         
-        message += "Mission Name: " + this.getMissionName() + "\n";
-        message += "Mission Date: " + this.getMissionDate() + "\n";
-        message += "Mission Details:\n";
+        message += "Mission Name: " + this.getMissionName();
+        message += "|Mission Details: ";
         message += this.getMissionVehicle().toString();
         
         return message;

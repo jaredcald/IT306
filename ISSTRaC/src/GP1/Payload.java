@@ -8,7 +8,6 @@ abstract public class Payload
     private int baseWeight;
     private double baseCost;
     private String payloadComments;
-    private int maxWeight;
 
     //constructors
     public Payload(){
@@ -40,10 +39,6 @@ abstract public class Payload
             this.cost = cost;
     }
     
-    public void setMaxWeight(int maxWeight){
-            this.maxWeight = maxWeight;
-    }
-    
     public boolean setPayloadComments(String someComments)
     {
         if(someComments.equals("") || someComments.equals(" "))
@@ -56,7 +51,6 @@ abstract public class Payload
             return true;
         }
     }
-
 
     //special instance methods
     public int calcPayloadWeight(){

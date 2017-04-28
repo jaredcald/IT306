@@ -54,4 +54,11 @@ public abstract class Vehicle
     public abstract double calcThrust();
     public abstract double calcWeight();
     
+    public String toString()
+    {
+       String message = "";
+       message += "|Payloads: " + this.getCurrNumPayloads();
+       message += "|Crew: " + this.getCurrNumCrew();
+       return message;
+    }
 }

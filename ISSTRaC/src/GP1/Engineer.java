@@ -13,17 +13,18 @@ package GP1;
 public class Engineer extends Astronaut
 {
     final int ENGINEER_RATE = 3;
+    private final double[] E_SALARY = {1000,2500,4000,8000};
+    private final double[] E_RATE = {-0.15, 0.05, 0.1, 0.2};
     int experienceType;
     double experienceAmount;
 
-    public double calcExpMod(int yearsExperience, int age, double weight, double pay, int payRate) {
-            //this.setSalary(yearsExperience * age * weight);
-            return pay;
+    public double calcExpMod()
+    {
+        return E_RATE[this.getYearsExp()];
     }
     
     public double calcSalary()
     {
-        
-        return 0.0;
+        return E_SALARY[this.getYearsExp()];
     }
 }

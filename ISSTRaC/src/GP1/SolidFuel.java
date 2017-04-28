@@ -50,4 +50,12 @@ public class SolidFuel extends Vehicle
     {
         return 0.0;
     }
+    
+    public String toString()
+    {
+        String message = "";
+        message += "Type: Solid Fuel";
+        message += super.toString();
+        return message;
+    }
 }

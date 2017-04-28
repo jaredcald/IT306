@@ -12,18 +12,24 @@ package GP1;
 //=======================================================================//
 public class MissionCaptain extends Astronaut
 {
-    final int MISS_CAPT_RATE = 5;
-    int experienceType;
-    double experienceAmount;
+    private final double[] MC_SALARY = {2000,3000,4000,6000};
+    private final double[] MC_RATE = {-0.2, -0.1, 0, 0.1};
+    private int experienceType;
+    private double experienceAmount;
+    
+    public MissionCaptain()
+    {
+        this.experienceType = -1;
+        this.experienceAmount = 0.0;
+    }
 
-    public double calcExpMod(int yearsExperience, int age, double weight, double pay, int payRate) {
-            //this.setSalary(yearsExperience * age * weight);
-            return pay;
+    public double calcExpMod()
+    {
+        return MC_RATE[this.getYearsExp()];
     }
     
     public double calcSalary()
     {
-        
-        return 0.0;
+        return MC_SALARY[this.getYearsExp()];
     }
 }
