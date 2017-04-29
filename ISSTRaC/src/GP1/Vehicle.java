@@ -4,8 +4,8 @@ public abstract class Vehicle
 {
     public static final String[] VEHICLETYPES = {"Cold Gas", "Solid Fuel", "Liquid Fuel"};
     public static final double VEH_BASE_COST = 10000;
-    public static final double VEH_MAX_COST = 100000;
-    public static final double EV_THRES = 25000; // Miles per Hour
+    public static final double EV_THRESH = 25000; // Miles per Hour
+    public static final double LHY_COST_PER_KG = 3.66;
     
     private Payload[] payloadArray;
     private Astronaut[] crewArray; 
@@ -41,7 +41,7 @@ public abstract class Vehicle
     
     public boolean setVehicleCost(double typeCost)
     {
-        if((typeCost + VEH_BASE_COST) < 0 || (typeCost + VEH_BASE_COST) > VEH_MAX_COST)
+        if((typeCost + VEH_BASE_COST) < 0 )
         {
             return false;
         }
@@ -65,7 +65,9 @@ public abstract class Vehicle
     public abstract boolean addPayload(Payload aPayload);
     public abstract boolean addCrew(Astronaut anAstronaut);
     
-    public abstract double calcFuelCost();
+    public abstract double calcFuelCost(int windResist);
+    
+    public abstract double calcSuccess();
     
     public double calcCost()
     {
@@ -78,7 +80,7 @@ public abstract class Vehicle
         
         for(int counter = 0; counter < this.getCurrNumCrew(); counter++)
         {
-            totCost += this.getCrew(counter).getSalary();
+            totCost += this.getCrew(counter).calcSalary();
         }
         
         return totCost;

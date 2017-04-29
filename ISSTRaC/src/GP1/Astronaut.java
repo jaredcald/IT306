@@ -14,17 +14,15 @@ package GP1;
 public abstract class Astronaut
 {
     private final String EXP_TYPE[] = {"Trainee", "Novice", "Experienced", "Veteran"};
-    private int yearsExp;
+    private int expIndex;
     private String name;
     private double weight;
     private double height;
-    private double salary;
     
     public String getName() { return this.name; }
-    public int getYearsExp() { return this.yearsExp; }
+    public int getYearsExp() { return this.expIndex; }
     public double getWeight() { return this.weight; }
     public double getHeight() { return this.height; }
-    public double getSalary() { return this.salary; }
     
     public boolean setName(String aName)
     {
@@ -67,7 +65,7 @@ public abstract class Astronaut
         }
     }
     
-    public boolean setYearsExp(int anExp)
+    public boolean setExpIndex(int anExp)
     {
         if(anExp < 0 || anExp > EXP_TYPE.length)
         {
@@ -75,7 +73,7 @@ public abstract class Astronaut
         }
         else
         {
-            this.yearsExp = anExp;
+            this.expIndex = anExp;
             return true;
         }
     }

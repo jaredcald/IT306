@@ -42,9 +42,20 @@ public class LiquidFuel extends Vehicle
         }
     }
     
-    public double calcFuelCost()
+    public double calcFuelCost(int windResist)
     {
-        return 0.0;
+        return (((LF_THRUST - windResist) / this.calcWeight()) * Vehicle.EV_THRESH) * Vehicle.LHY_COST_PER_KG;
+    }
+    
+    public double calcSuccess()
+    {
+        double totSuccess = LF_SUCC_RATE;
+        
+        for(int counter = 0; counter < this.getCurrNumCrew(); counter++)
+        {
+            totSuccess += this.getCrew(counter).calcExpMod();
+        }
+        return totSuccess; 
     }
     
     public double calcWeight()

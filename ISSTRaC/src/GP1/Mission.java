@@ -33,6 +33,7 @@ public class Mission
     public int getMissionID() { return this.missionID; }
     public String getMissionName() { return this.missionName; }
     public String getMissionDate() { return this.missionDate; }
+    public int getMissionWindValue() { return this.missionWindValue; }
     
     public Vehicle getMissionVehicle()
     {
@@ -88,6 +89,19 @@ public class Mission
         }
     }
     
+    public double calcMissionSuccess()
+    {
+        return this.getMissionVehicle().calcSuccess();
+    }
+    
+    public double calcMissionCost()
+    {
+        double totCost = 0.0;
+        totCost += this.getMissionVehicle().calcFuelCost(this.getMissionWindValue());
+        totCost += this.getMissionVehicle().calcCost();
+        return totCost;
+    }
+    
     public String toString()
     {
         String message = "";
@@ -95,6 +109,9 @@ public class Mission
         message += "Mission Name: " + this.getMissionName();
         message += "|Mission Details: ";
         message += this.getMissionVehicle().toString();
+        message += "\nSuccess: " + this.calcMissionSuccess();
+        message += "\nTotal Cost: " + this.calcMissionCost();
+        message += "\nFuel Cost: " + this.getMissionVehicle().calcFuelCost(this.getMissionWindValue());
         
         return message;
     }

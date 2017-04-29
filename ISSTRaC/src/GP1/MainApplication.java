@@ -998,6 +998,9 @@ public class MainApplication extends javax.swing.JFrame {
 
     private void btnEditMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditMissionActionPerformed
         
+        this.lstRptSelectedMission.removeAllItems();
+        this.lstRptSelectedMission.addItem("< Select from Mission List >");
+        
         for(int counter = 0; counter < missionStorage.size(); counter++)
         {
             this.lstSelectedMission.addItem(missionStorage.get(counter).toString());
@@ -1008,6 +1011,9 @@ public class MainApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditMissionActionPerformed
 
     private void btnMissionRptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMissionRptActionPerformed
+        
+        this.lstRptSelectedMission.removeAllItems();
+        this.lstRptSelectedMission.addItem("< Select from Mission List >");
         
         for(int counter = 0; counter < missionStorage.size(); counter++)
         {
@@ -1263,7 +1269,7 @@ public class MainApplication extends javax.swing.JFrame {
         currentCrew.setName(this.newMissCrewName.getText());
         currentCrew.setHeight(Double.parseDouble(this.newMissCrewHeight.getText()));
         currentCrew.setWeight(Double.parseDouble(this.newMissCrewWeight.getText()));
-        currentCrew.setYearsExp(this.newMissCrewExp.getSelectedIndex());
+        currentCrew.setExpIndex(this.newMissCrewExp.getSelectedIndex());
         
         currentMission.getMissionVehicle().setCrew(currentCrew);
         resetNewMissCrew();        
