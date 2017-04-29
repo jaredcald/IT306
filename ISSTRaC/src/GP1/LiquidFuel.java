@@ -1,7 +1,19 @@
 package GP1;
 
+//=======================================================================\\
+// Student Name: Benjamin Bristol (Lead)
+// Student Name: Jared Caldwell (Support)
+// Student Name: Anmol Dua (Support)
+// Date: 4.27.17
+// Course/Section: IT 306.001
+// Assignment: Group Project
+// This application will present the UI for the ISSTRaC application, 
+// and allow a user to enter all of the data requirements as specified in 
+// the earlier project documentation.
+//=======================================================================//	
 public class LiquidFuel extends Vehicle
 {
+    // Static Variable Declaration:
     public static final double LF_BASE_COST = 50000;
     public static final double LF_BASE_WEIGHT = 3500;
     public static final double LF_SUCC_RATE = 0.75;

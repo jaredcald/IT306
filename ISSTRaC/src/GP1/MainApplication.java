@@ -5,13 +5,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 //=======================================================================\\
 // Student Name: Benjamin Bristol (Lead)
 // Student Name: Jared Caldwell (Support)
 // Student Name: Anmol Dua (Support)
-// Date: 4.10.17
+// Date: 4.27.17
 // Course/Section: IT 306.001
 // Assignment: Group Project
 // This application will present the UI for the ISSTRaC application, 
@@ -20,23 +21,26 @@ import javax.swing.JOptionPane;
 //=======================================================================//	
 public class MainApplication extends javax.swing.JFrame {
 
+    // Static Application Variables - Card Layout Control:
     private static final String PNL_MAIN = "MainPanel";
     private static final String PNL_NEWMISS = "NewMissionPanel";
     private static final String PNL_EDTMISS = "EditMissionPanel";
     private static final String PNL_RPTMISS = "MissionReportPanel";
     
-    
+    // Primary Application Variables:
     private LinkedList missionStorage;
     private Mission currentMission;
     private Mission selectedMission;
+    private int selectedMissionIndex;
     
     public MainApplication() {
         initComponents();
         
-        // TO DO: Check, Open and Load DB.
+        // TODO: Check, Open and Load DB.
         
         missionStorage = new LinkedList();
         
+        // Initialize Card Layout:
         this.pnlMain.add(this.pnlMainMenu, PNL_MAIN);
         this.pnlMain.add(this.pnlNewTab, PNL_NEWMISS);
         this.pnlMain.add(this.pnlEditTab, PNL_EDTMISS);
@@ -193,7 +197,7 @@ public class MainApplication extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GP1/ISS Logo Bckground.png"))); // NOI18N
         jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel30.setText("ver 0.1a");
+        jLabel30.setText("ver 1.0");
 
         javax.swing.GroupLayout pnlMainMenuLayout = new javax.swing.GroupLayout(pnlMainMenu);
         pnlMainMenu.setLayout(pnlMainMenuLayout);
@@ -998,13 +1002,7 @@ public class MainApplication extends javax.swing.JFrame {
 
     private void btnEditMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditMissionActionPerformed
         
-        this.lstRptSelectedMission.removeAllItems();
-        this.lstRptSelectedMission.addItem("< Select from Mission List >");
-        
-        for(int counter = 0; counter < missionStorage.size(); counter++)
-        {
-            this.lstSelectedMission.addItem(missionStorage.get(counter).toString());
-        }
+        populateMissionList(this.lstSelectedMission);
         
         CardLayout c1 = (CardLayout) this.pnlMain.getLayout();
         c1.show(this.pnlMain, PNL_EDTMISS);
@@ -1012,13 +1010,7 @@ public class MainApplication extends javax.swing.JFrame {
 
     private void btnMissionRptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMissionRptActionPerformed
         
-        this.lstRptSelectedMission.removeAllItems();
-        this.lstRptSelectedMission.addItem("< Select from Mission List >");
-        
-        for(int counter = 0; counter < missionStorage.size(); counter++)
-        {
-            this.lstRptSelectedMission.addItem(missionStorage.get(counter).toString());
-        }
+        populateMissionList(this.lstRptSelectedMission);
         
         CardLayout c1 = (CardLayout) this.pnlMain.getLayout();
         c1.show(this.pnlMain, PNL_RPTMISS);
@@ -1114,6 +1106,8 @@ public class MainApplication extends javax.swing.JFrame {
         if(JOptionPane.showConfirmDialog(null, "Are you sure you would like to cancel updates to this mission?", "Confirm Mission Update Cancel", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
         { 
             resetEditMission();
+            
+            missionStorage.add(selectedMissionIndex, selectedMission);
 
             CardLayout c1 = (CardLayout) this.pnlMain.getLayout();
             c1.show(this.pnlMain, PNL_MAIN);
@@ -1121,7 +1115,7 @@ public class MainApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditMissDiscardActionPerformed
 
     private void btnDeleteMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteMissionActionPerformed
-        if(this.lstRptSelectedMission.getSelectedIndex() == 0)
+        if(this.lstSelectedMission.getSelectedIndex() == 0)
         {
             JOptionPane.showMessageDialog(null, "Please select a mission.");
         }
@@ -1129,7 +1123,7 @@ public class MainApplication extends javax.swing.JFrame {
         {  
             if(JOptionPane.showConfirmDialog(null, "Are you sure you would like to delete this mission?", "Confirm Mission Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
             { 
-                // DELETE SELECTED MISSION
+                missionStorage.remove(this.lstSelectedMission.getSelectedIndex() - 1);
 
                 CardLayout c1 = (CardLayout) this.pnlMain.getLayout();
                 c1.show(this.pnlMain, PNL_MAIN);
@@ -1180,20 +1174,20 @@ public class MainApplication extends javax.swing.JFrame {
 
     private void btnUpdateMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateMissionActionPerformed
 
-        if(this.lstRptSelectedMission.getSelectedIndex() == 0)
+        if(this.lstSelectedMission.getSelectedIndex() == 0)
         {
             JOptionPane.showMessageDialog(null, "Please select a mission.");
         }
         else
         {        
             selectedMission = (Mission) missionStorage.remove(this.lstSelectedMission.getSelectedIndex() - 1);
+            selectedMissionIndex = this.lstSelectedMission.getSelectedIndex() - 1;
 
-            for(int counter = 0; counter < selectedMission.getMissionVehicle().getCurrNumPayloads(); counter++)
-            {
-                //this.editMissSelectPayload.addItem(selectedMission.getMissionVehicle().payloadArray[counter].toString());
-            }
+            populateEditList(this.editMissSelectPayload, "Payload", 0);
+            populateEditList(this.editMissSelectCrew, "Crew", 1);
 
             this.pnlEditTab.setSelectedIndex(this.pnlEditTab.getSelectedIndex() + 1);
+            this.pnlEditTab.setEnabledAt(0,false);
         }
     }//GEN-LAST:event_btnUpdateMissionActionPerformed
 
@@ -1281,6 +1275,8 @@ public class MainApplication extends javax.swing.JFrame {
         {
             missionStorage.add(currentMission);
 
+            resetNewMission();
+            
             CardLayout c1 = (CardLayout) this.pnlMain.getLayout();
             c1.show(this.pnlMain, PNL_MAIN);
         }
@@ -1307,11 +1303,51 @@ public class MainApplication extends javax.swing.JFrame {
         this.pnlRptTab.setSelectedIndex(0);
     }//GEN-LAST:event_btnRptMissConfirmActionPerformed
 
+    private void populateMissionList(JComboBox target)
+    {
+        target.removeAllItems();
+        target.addItem("< Select from Mission List >");
+        
+        for(int counter = 0; counter < missionStorage.size(); counter++)
+        {
+            target.addItem(((Mission)missionStorage.get(counter)).toStringBrief());
+        }
+    }
+    
+    private void populateEditList(JComboBox target, String identity, int function)
+    {
+        target.removeAllItems();
+        target.addItem("< Select from " + identity +" List >");
+        
+        switch(function)
+        {
+            case 0:
+            {
+                for(int counter = 0; counter < selectedMission.getMissionVehicle().getCurrNumPayloads(); counter++)
+                {
+                    target.addItem(selectedMission.getMissionVehicle().getPayload(counter).toStringBrief());
+                }
+                break;
+            }
+            case 1:
+            {
+                for(int counter = 0; counter < selectedMission.getMissionVehicle().getCurrNumCrew(); counter++)
+                {
+                    target.addItem(selectedMission.getMissionVehicle().getCrew(counter).toStringBrief());
+                }
+            }
+        }
+        
+
+    }
+    
     private void resetNewMission()
     {
         this.newMissMissName.setText("");
-        //this.newMissDate.
         this.newMissVehicleType.setSelectedIndex(0);
+        
+        this.pnlNewTab.setSelectedIndex(0);
+        this.pnlNewTab.setEnabledAt(0, true);
         
         resetNewMissPayload();
         resetNewMissCrew();
@@ -1351,7 +1387,10 @@ public class MainApplication extends javax.swing.JFrame {
         this.editMissCrewHeight.setText("");
         this.editMissCrewWeight.setText("");
         this.editMissCrewType.setSelectedIndex(0);
-        this.editMissCrewExp.setSelectedIndex(0);        
+        this.editMissCrewExp.setSelectedIndex(0); 
+        
+        this.pnlEditTab.setEnabledAt(0, true);
+        this.pnlEditTab.setSelectedIndex(0);
     }
     
     private void generateReport(Mission selectedMission)

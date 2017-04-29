@@ -4,7 +4,7 @@ package GP1;
 // Student Name: Benjamin Bristol (Lead)
 // Student Name: Jared Caldwell (Support)
 // Student Name: Anmol Dua (Support)
-// Date: 4.10.17
+// Date: 4.27.17
 // Course/Section: IT 306.001
 // Assignment: Group Project
 // This DDC defines the parent 'MissionCaptain' class, which will provide the
@@ -31,5 +31,14 @@ public class MissionCaptain extends Astronaut
     public double calcSalary()
     {
         return MC_SALARY[this.getYearsExp()];
+    }
+    
+    public String toStringBrief()
+    {
+        String message = "";
+        
+        message += "Mission Captain: " + this.getName() + ", " + EXP_TYPE[this.getYearsExp()];
+        
+        return message;
     }
 }

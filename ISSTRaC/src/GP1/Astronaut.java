@@ -4,7 +4,7 @@ package GP1;
 // Student Name: Benjamin Bristol (Lead)
 // Student Name: Jared Caldwell (Support)
 // Student Name: Anmol Dua (Support)
-// Date: 4.10.17
+// Date: 4.27.17
 // Course/Section: IT 306.001
 // Assignment: Group Project
 // This DDC defines the parent 'Astronaut' class, which will provide the
@@ -13,7 +13,7 @@ package GP1;
 //=======================================================================//	
 public abstract class Astronaut
 {
-    private final String EXP_TYPE[] = {"Trainee", "Novice", "Experienced", "Veteran"};
+    public final String EXP_TYPE[] = {"Trainee", "Novice", "Experienced", "Veteran"};
     private int expIndex;
     private String name;
     private double weight;
@@ -80,6 +80,8 @@ public abstract class Astronaut
     
     public abstract double calcExpMod();
     
-    public abstract double calcSalary();            
+    public abstract double calcSalary();    
+    
+    public abstract String toStringBrief();
 }
 

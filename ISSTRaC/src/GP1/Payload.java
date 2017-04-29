@@ -1,5 +1,16 @@
 package GP1;
 
+//=======================================================================\\
+// Student Name: Benjamin Bristol (Lead)
+// Student Name: Jared Caldwell (Support)
+// Student Name: Anmol Dua (Support)
+// Date: 4.27.17
+// Course/Section: IT 306.001
+// Assignment: Group Project
+// This application will present the UI for the ISSTRaC application, 
+// and allow a user to enter all of the data requirements as specified in 
+// the earlier project documentation.
+//=======================================================================//	
 abstract public class Payload
 {	
     //class variables
@@ -25,7 +36,7 @@ abstract public class Payload
     }
 
     //accessors and mutators
-    public int getweight(){ return weight; }
+    public int getWeight(){ return weight; }
     public double getCost(){ return cost; }
     public int getBaseWeight(){ return baseWeight; }
     public double getBaseCost(){ return baseCost; }
@@ -59,9 +70,11 @@ abstract public class Payload
     }
 
     public double calcCost(){
-        double payloadCost = ((cost*weight) + baseCost);
+        double payloadCost = (this.getCost()+ baseCost);
         return payloadCost;
     }
+    
+    public abstract String toStringBrief();
 
     public String toString(){
         String line = 

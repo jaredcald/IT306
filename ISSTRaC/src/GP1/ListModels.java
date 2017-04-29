@@ -6,11 +6,12 @@ import javax.swing.DefaultComboBoxModel;
 // Student Name: Benjamin Bristol (Lead)
 // Student Name: Jared Caldwell (Support)
 // Student Name: Anmol Dua (Support)
-// Date: 4.10.17
+// Date: 4.27.17
 // Course/Section: IT 306.001
 // Assignment: Group Project
 // This DDC defines all models for UI, which will provide the implementation
-// information related to combo and list box models.
+// information related to combo and list box models.  This is a utility class
+// that is solely used for population of Swing controls.
 //=======================================================================//
 class VehicleModel extends DefaultComboBoxModel{
     public final static String[] VEHICLES = {"Cold Gas", "Solid Fuel", "Liquid Fuel"};
